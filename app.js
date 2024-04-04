@@ -79,12 +79,38 @@ const updateDateTime = () => {
   datetime.innerHTML = currentDateTime;
 };
 
+// `<div class="forecast-day">
+// <img class="forecast-icon" />
+// <div class="forecast-info">
+//   <p>Monday, April 1</p>
+//   <p>Rain</p>
+// </div>
+// <h2>25 C</h2>
+// </div>`;
+
 // function that updates forecast data using data from the API
 const updateForecast = async (location, days) => {
   const forecastData = await getData(location, days);
 
-  // update the UI with the forecast data
-  console.log(forecastData);
+  // get the forecast days array from forecastData
+  const forecastDays = forecastData.forecast.forecastday;
+
+  const forecastList = document.querySelector('.forecast-list');
+
+  // render forecastDays inside forecastList
+  forecastList.innerHTML = forecastDays.map(day => {
+    const date = new Date(day.date);
+    const forecastDay = document.createElement('div');
+    forecastDay.classList.add('forecast-day');
+    forecastDay.innerHTML = `
+    <img class="forecast-icon" src="${day.day.condition.icon}" />
+    <div class="forecast-info">
+      <p>${date.getDay}, ${date.getDate}</p>
+      <p>${day.day.condition}</p>
+    </div>
+    <h2>${day.day.temp_c}</h2>
+    `;
+  });
 };
 
 // function that updates the UI with the weather data
@@ -103,7 +129,7 @@ const updateUI = async location => {
   temp_c.innerHTML = `${weatherData.temperature}°C`;
 
   // Forecast
-  forecastIcon.src = weatherData.icon;
+  // forecastIcon.src = weatherData.icon;
   // RIGHT
 };
 
