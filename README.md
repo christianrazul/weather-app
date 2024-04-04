@@ -1,2 +1,4 @@
 # Just another Weather App
- Done solely to practice my skills in HTML, CSS, and mainly, JavaScipt!
+ Created with the purpose of practicing my skills in HTML, CSS, and mainly, JavaScipt!
+ Learning Goals:
+ 1. Fetching Data using APIs
