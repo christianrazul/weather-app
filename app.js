@@ -42,6 +42,18 @@ const processData = async location => {
   return weatherData;
 };
 
+// function that updates date and time
+
+const updateDateTime = () => {
+  const now = new Date();
+
+  // get the current date and time as a string
+  const currentDateTime = `${now.toDateString()} | ${now.toLocaleTimeString()} `;
+
+  // update the UI with the current date and time
+  datetime.innerHTML = currentDateTime;
+};
+
 // function that updates the UI with the weather data
 const updateUI = async location => {
   const weatherData = await processData(location);
@@ -58,8 +70,7 @@ const updateUI = async location => {
   temp_c.innerHTML = `${weatherData.temperature}°C`;
 
   // RIGHT
-  const date = new Date();
-  datetime.innerHTML = `${date.toDateString()} | ${date.toLocaleTimeString()} `;
 };
 
 updateUI('Davao');
+setInterval(updateDateTime, 1000);
