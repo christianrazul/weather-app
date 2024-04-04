@@ -24,7 +24,7 @@ let defaultLocation = 'Davao';
 searchBtn.addEventListener('click', event => {
   event.preventDefault();
   const location = formInput.value;
-  updateUI(location);
+  startApp(location);
 });
 
 // function that fetches data from the API and takes in a location as an argument
@@ -221,11 +221,11 @@ const updateUI = async location => {
   temp_c.innerHTML = `${weatherData.temperature}°C`;
 };
 
-const startApp = () => {
-  updateUI(defaultLocation);
-  updateForecast(defaultLocation, 7);
-  updateHourlyWeather(defaultLocation);
+const startApp = location => {
+  updateUI(location);
+  updateForecast(location, 7);
+  updateHourlyWeather(location);
 };
 
 setInterval(updateDateTime, 1000);
-startApp();
+startApp(defaultLocation);
