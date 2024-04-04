@@ -98,18 +98,38 @@ const updateForecast = async (location, days) => {
   const forecastList = document.querySelector('.forecast-list');
 
   // render forecastDays inside forecastList
-  forecastList.innerHTML = forecastDays.map(day => {
+  forecastList.innerHTML = '';
+  forecastDays.forEach(day => {
+    console.log(day);
     const date = new Date(day.date);
+    console.log(date.getDay());
+
+    // main div that will contain the forecast data
     const forecastDay = document.createElement('div');
     forecastDay.classList.add('forecast-day');
-    forecastDay.innerHTML = `
-    <img class="forecast-icon" src="${day.day.condition.icon}" />
-    <div class="forecast-info">
-      <p>${date.getDay}, ${date.getDate}</p>
-      <p>${day.day.condition}</p>
-    </div>
-    <h2>${day.day.temp_c}</h2>
-    `;
+
+    const icon = document.createElement('img');
+    icon.classList.add('forecast-icon');
+    icon.src = day.day.condition.icon;
+    forecastDay.appendChild(icon);
+
+    const info = document.createElement('div');
+    info.classList.add('forecast-info');
+    forecastDay.appendChild(info);
+
+    const dayName = document.createElement('p');
+    dayName.textContent = `${date.getDay()}, ${date.getDate()}`;
+    info.appendChild(dayName);
+
+    const condition = document.createElement('p');
+    condition.textContent = day.day.condition;
+    info.appendChild(condition);
+
+    const temp = document.createElement('h2');
+    temp.textContent = day.day.temp_c;
+    forecastDay.appendChild(temp);
+
+    forecastList.appendChild(forecastDay);
   });
 };
 
