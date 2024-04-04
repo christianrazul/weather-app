@@ -1,5 +1,6 @@
 # Just another Weather App
  Created with the purpose of practicing my skills in HTML, CSS, and mainly, JavaScipt!
+ <br />
  Learning Goals:
  1. Fetching Data using APIs
  2. Working with Dates and Datetime
