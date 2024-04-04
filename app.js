@@ -1,9 +1,11 @@
+// ENV API key
 const apiKey = '46ef736d9c644f079ba170948240304';
+
+// Weather Information
 const windInformation = document.querySelector('#wind-information');
 const weatherDesc = document.querySelector('#weather-description');
 const temp_c = document.querySelector('#temp_C');
 const loc = document.querySelector('#location');
-const formInput = document.querySelector('.form-field');
 const datetime = document.querySelector('#datetime');
 
 // Forecast
@@ -11,16 +13,35 @@ const forecast = document.querySelector('.forecast');
 const forecastDay = document.querySelector('.forecast-day');
 const forecastIcon = document.querySelector('.forecast-icon');
 
-// function that fetches data from the API and takes in a location as an argument
-const getData = async location => {
-  const response = await fetch('http://api.weatherapi.com/v1/current.json?key=' + apiKey + '&q=' + location, {
-    mode: 'cors',
-  });
-  const data = await response.json();
+// Search input
+const formInput = document.querySelector('.form-field');
+const searchBtn = document.querySelector('#search-btn');
 
+// Default values
+let defaultLocation = 'Davao';
+
+// Event listener for the search button
+searchBtn.addEventListener('click', event => {
+  event.preventDefault();
+  const location = formInput.value;
+  updateUI(location);
+});
+
+// function that fetches data from the API and takes in a location as an argument
+const getData = async (location, days) => {
+  const response = await fetch(
+    'http://api.weatherapi.com/v1/forecast.json?key=' +
+      apiKey +
+      '&q=' +
+      location +
+      '&days=' +
+      days +
+      '&aqi=no&alerts=no',
+    { mode: 'cors' }
+  );
+  const data = await response.json();
   return data;
 };
-
 // Process data from the API and return an object
 const processData = async location => {
   const weatherData = {
@@ -48,7 +69,6 @@ const processData = async location => {
 };
 
 // function that updates date and time
-
 const updateDateTime = () => {
   const now = new Date();
 
@@ -57,6 +77,14 @@ const updateDateTime = () => {
 
   // update the UI with the current date and time
   datetime.innerHTML = currentDateTime;
+};
+
+// function that updates forecast data using data from the API
+const updateForecast = async (location, days) => {
+  const forecastData = await getData(location, days);
+
+  // update the UI with the forecast data
+  console.log(forecastData);
 };
 
 // function that updates the UI with the weather data
@@ -79,5 +107,7 @@ const updateUI = async location => {
   // RIGHT
 };
 
-updateUI('Davao');
+updateUI(defaultLocation);
 setInterval(updateDateTime, 1000);
+
+updateForecast(defaultLocation, 3);

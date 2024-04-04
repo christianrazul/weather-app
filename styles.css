@@ -17,6 +17,7 @@
   --group-color: var(--input-color);
   --group-border: var(--input-border);
   --group-background: #eef4ff;
+  --container-background: #f7f9fd;
 
   --group-color-focus: #fff;
   --group-border-focus: var(--input-border-focus);
@@ -45,9 +46,10 @@ hr {
   display: grid;
   grid-template-columns: 1fr 2fr;
   border: 3px solid var(--group-border);
+  background-color: var(--container-background);
   border-radius: 16px;
-  width: 80%;
-  height: 80%;
+  width: 950px;
+  height: 950px;
 }
 
 .left,
@@ -162,6 +164,10 @@ hr {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   gap: 1rem;
+}
+
+.forecast h3 {
+  text-align: center;
 }
 
 .forecast-day {
