@@ -31,8 +31,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   background-color: var(--group-background);
 }
 
@@ -41,6 +41,22 @@ hr {
   border: none;
   border-top: 1px solid var(--group-border);
   margin: 2rem 0;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 2rem;
+}
+
+footer a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+footer i {
+  color: red;
 }
 .container {
   display: grid;
