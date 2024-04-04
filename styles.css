@@ -167,10 +167,45 @@ hr {
 .forecast-day {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.forecast-icon {
+  width: 2.5rem;
+  object-fit: contain;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--group-border);
+  padding: 8px;
 }
 
 .forecast-day h2 {
   padding-left: 1rem;
   border-left: 1px solid var(--group-border);
+}
+
+.forecast-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forecast-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.forecast-buttons button.active {
+  border: 1px solid var(--group-border);
+  background-color: var(--group-background);
+  border-radius: 0.5rem;
+}
+
+.forecast-buttons button.active:hover {
+  border: 1px solid var(--group-border-focus);
+  background-color: var(--group-background-focus);
+  border-radius: 0.5rem;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

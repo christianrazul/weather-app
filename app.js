@@ -6,6 +6,11 @@ const loc = document.querySelector('#location');
 const formInput = document.querySelector('.form-field');
 const datetime = document.querySelector('#datetime');
 
+// Forecast
+const forecast = document.querySelector('.forecast');
+const forecastDay = document.querySelector('.forecast-day');
+const forecastIcon = document.querySelector('.forecast-icon');
+
 // function that fetches data from the API and takes in a location as an argument
 const getData = async location => {
   const response = await fetch('http://api.weatherapi.com/v1/current.json?key=' + apiKey + '&q=' + location, {
@@ -69,6 +74,8 @@ const updateUI = async location => {
 
   temp_c.innerHTML = `${weatherData.temperature}°C`;
 
+  // Forecast
+  forecastIcon.src = weatherData.icon;
   // RIGHT
 };
 
