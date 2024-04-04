@@ -152,6 +152,14 @@ hr {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.wind-information {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .right {

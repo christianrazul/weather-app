@@ -8,6 +8,8 @@
     <link type="image/png" sizes="32x32" rel="icon" href="./images/icons8-partly-cloudy-day-32.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://kit.fontawesome.com/aed1e1ecf4.js" crossorigin="anonymous"></script>
     <title>Weather App</title>
   </head>
   <body>
@@ -21,7 +23,8 @@
           <div class="weather-information">
             <h1 id="temp_C"></h1>
           </div>
-          <div>
+          <div class="wind-information">
+            <i class="fa-solid fa-wind"></i>
             <p id="wind-information"></p>
           </div>
         </div>
@@ -34,14 +37,7 @@
             <button type="button">30 days</button>
           </div>
           <div class="forecast-list">
-            <div class="forecast-day">
-              <img class="forecast-icon" />
-              <div class="forecast-info">
-                <p>Monday, April 1</p>
-                <p>Rain</p>
-              </div>
-              <h2>25 C</h2>
-            </div>
+            <div class="forecast-day"></div>
           </div>
         </div>
       </div>

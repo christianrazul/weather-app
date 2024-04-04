@@ -124,15 +124,6 @@ const updateForecast = async (location, days) => {
   });
 };
 
-// <div class='hourly-weather-list'>
-//   <div class='hourly-weather-card'>
-//     <p>12:00</p>
-//     <hr />
-//     <img class='hourly-weather-icon' />
-//     <p>25 C</p>
-//   </div>
-// </div>;
-
 const updateHourlyWeather = async location => {
   const hourlyData = await getData(location);
   const currentHour = new Date().getHours();
@@ -176,13 +167,51 @@ const updateHourlyWeather = async location => {
   });
 };
 
+const convertCompassDirection = direction => {
+  switch (direction) {
+    case 'N':
+      return 'North';
+    case 'NNE':
+      return 'North-Northeast';
+    case 'NE':
+      return 'Northeast';
+    case 'ENE':
+      return 'East-Northeast';
+    case 'E':
+      return 'East';
+    case 'ESE':
+      return 'East-Southeast';
+    case 'SE':
+      return 'Southeast';
+    case 'SSE':
+      return 'South-Southeast';
+    case 'S':
+      return 'South';
+    case 'SSW':
+      return 'South-Southwest';
+    case 'SW':
+      return 'Southwest';
+    case 'WSW':
+      return 'West-Southwest';
+    case 'W':
+      return 'West';
+    case 'WNW':
+      return 'West-Northwest';
+    case 'NW':
+      return 'Northwest';
+    case 'NNW':
+      return 'North-Northwest';
+    default:
+      return '';
+  }
+};
+
 // function that updates the UI with the weather data
 const updateUI = async location => {
   const weatherData = await processData(location);
 
   // update the UI
-  windInformation.innerHTML = `
-  ${weatherData.wind_direction}, ${weatherData.wind_kph} km/h`;
+  windInformation.innerHTML = `${convertCompassDirection(weatherData.wind_direction)} at ${weatherData.wind_kph} km/h`;
 
   weatherDesc.innerHTML = ` <img src='${weatherData.icon}' class='weather-icon'/> ${weatherData.condition} `;
   // put the weatherData icon in an img tag
@@ -190,10 +219,6 @@ const updateUI = async location => {
   loc.innerHTML = `${weatherData.locationName}, ${weatherData.locationCountry}`;
 
   temp_c.innerHTML = `${weatherData.temperature}°C`;
-
-  // Forecast
-  // forecastIcon.src = weatherData.icon;
-  // RIGHT
 };
 
 const startApp = () => {
@@ -202,8 +227,5 @@ const startApp = () => {
   updateHourlyWeather(defaultLocation);
 };
 
-updateUI(defaultLocation);
 setInterval(updateDateTime, 1000);
-
-updateForecast(defaultLocation, 7);
-updateHourlyWeather(defaultLocation);
+startApp();
