@@ -135,6 +135,8 @@ const updateForecast = async (location, days) => {
 
 const updateHourlyWeather = async location => {
   const hourlyData = await getData(location);
+  const currentHour = new Date().getHours();
+  console.log(currentHour);
 
   // get the hourly forecast array from hourlyData
   const hourlyForecast = hourlyData.forecast.forecastday[0].hour;
@@ -145,7 +147,7 @@ const updateHourlyWeather = async location => {
   // clear list
   hourlyList.innerHTML = '';
 
-  hourlyForecast.slice(0, 3).forEach(hour => {
+  hourlyForecast.slice(currentHour, currentHour + 7).forEach(hour => {
     // convert hour to a date object
     let date = new Date(hour.time);
     let cleanedTime = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -192,6 +194,12 @@ const updateUI = async location => {
   // Forecast
   // forecastIcon.src = weatherData.icon;
   // RIGHT
+};
+
+const startApp = () => {
+  updateUI(defaultLocation);
+  updateForecast(defaultLocation, 7);
+  updateHourlyWeather(defaultLocation);
 };
 
 updateUI(defaultLocation);
