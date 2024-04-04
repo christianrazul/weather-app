@@ -6,3 +6,4 @@
 
  Todo:
  1. Get the forecast buttons to function
+ 2. Get more images to display/represent weather conditions
