@@ -161,19 +161,25 @@ hr {
 }
 
 .forecast {
-  display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .forecast h3 {
   text-align: center;
 }
 
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .forecast-day {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .forecast-icon {
@@ -186,8 +192,21 @@ hr {
 }
 
 .forecast-day h2 {
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   border-left: 1px solid var(--group-border);
+}
+
+.forecast-day p {
+  font-size: 14px;
+}
+
+.forecast-day p:first-child {
+  font-weight: 600;
+}
+
+.forecast-day p:last-child {
+  font-weight: light;
+  color: var(--input-color);
 }
 
 .forecast-buttons {

@@ -79,15 +79,6 @@ const updateDateTime = () => {
   datetime.innerHTML = currentDateTime;
 };
 
-// `<div class="forecast-day">
-// <img class="forecast-icon" />
-// <div class="forecast-info">
-//   <p>Monday, April 1</p>
-//   <p>Rain</p>
-// </div>
-// <h2>25 C</h2>
-// </div>`;
-
 // function that updates forecast data using data from the API
 const updateForecast = async (location, days) => {
   const forecastData = await getData(location, days);
@@ -102,7 +93,6 @@ const updateForecast = async (location, days) => {
   forecastDays.forEach(day => {
     console.log(day);
     const date = new Date(day.date);
-    console.log(date.getDay());
 
     // main div that will contain the forecast data
     const forecastDay = document.createElement('div');
@@ -118,15 +108,17 @@ const updateForecast = async (location, days) => {
     forecastDay.appendChild(info);
 
     const dayName = document.createElement('p');
-    dayName.textContent = `${date.getDay()}, ${date.getDate()}`;
+    dayName.textContent = `${date.toLocaleDateString('en-US', {
+      weekday: 'long',
+    })}, ${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
     info.appendChild(dayName);
 
     const condition = document.createElement('p');
-    condition.textContent = day.day.condition;
+    condition.textContent = day.day.condition.text;
     info.appendChild(condition);
 
     const temp = document.createElement('h2');
-    temp.textContent = day.day.temp_c;
+    temp.textContent = `${Math.ceil(day.day.avgtemp_c)}°`;
     forecastDay.appendChild(temp);
 
     forecastList.appendChild(forecastDay);
@@ -156,4 +148,4 @@ const updateUI = async location => {
 updateUI(defaultLocation);
 setInterval(updateDateTime, 1000);
 
-updateForecast(defaultLocation, 3);
+updateForecast(defaultLocation, 7);
