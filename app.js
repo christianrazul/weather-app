@@ -30,7 +30,7 @@ searchBtn.addEventListener('click', event => {
 // function that fetches data from the API and takes in a location as an argument
 const getData = async (location, days) => {
   const response = await fetch(
-    'http://api.weatherapi.com/v1/forecast.json?key=' +
+    'https://api.weatherapi.com/v1/forecast.json?key=' +
       apiKey +
       '&q=' +
       location +
