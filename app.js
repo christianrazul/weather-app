@@ -91,7 +91,6 @@ const updateForecast = async (location, days) => {
   // render forecastDays inside forecastList
   forecastList.innerHTML = '';
   forecastDays.forEach(day => {
-    console.log(day);
     const date = new Date(day.date);
 
     // main div that will contain the forecast data
@@ -146,24 +145,33 @@ const updateHourlyWeather = async location => {
   // clear list
   hourlyList.innerHTML = '';
 
-  // hourlyForecast.forEach(hour => {
-  //   const hourDiv = document.createElement('div');
-  //   hourDiv.classList.add('hourly-forecast');
+  hourlyForecast.slice(0, 3).forEach(hour => {
+    // convert hour to a date object
+    let date = new Date(hour.time);
+    let cleanedTime = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
 
-  //   const time = document.createElement('p');
-  //   time.textContent = hour.time;
-  //   hourDiv.appendChild(time);
+    // main card that all children will be appended to
+    const hourlyWeatherCard = document.createElement('div');
+    hourlyWeatherCard.classList.add('hourly-weather-card');
 
-  //   const icon = document.createElement('img');
-  //   icon.src = hour.condition.icon;
-  //   hourDiv.appendChild(icon);
+    const time = document.createElement('p');
+    time.textContent = cleanedTime;
+    hourlyWeatherCard.appendChild(time);
 
-  //   const temp = document.createElement('p');
-  //   temp.textContent = `${hour.temp_c}°`;
-  //   hourDiv.appendChild(temp);
+    const hr = document.createElement('hr');
+    hourlyWeatherCard.appendChild(hr);
 
-  //   hourlyList.appendChild(hourDiv);
-  // });
+    const icon = document.createElement('img');
+    icon.classList.add('forecast-icon');
+    icon.src = hour.condition.icon;
+    hourlyWeatherCard.appendChild(icon);
+
+    const temp = document.createElement('p');
+    temp.textContent = `${Math.ceil(hour.temp_c)}°C`;
+    hourlyWeatherCard.appendChild(temp);
+
+    hourlyList.appendChild(hourlyWeatherCard);
+  });
 };
 
 // function that updates the UI with the weather data
