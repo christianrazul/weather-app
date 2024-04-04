@@ -234,3 +234,25 @@ hr {
   color: #fff;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.hourly-weather-list {
+  display: flex;
+  gap: 1rem;
+  overflow-x: hidden;
+  border: 1px solid red;
+}
+
+.hourly-weather-card {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 120px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--group-border);
+}
+
+.hourly-weather-card hr {
+  margin: 4px 0 8px;
+}
