@@ -125,6 +125,47 @@ const updateForecast = async (location, days) => {
   });
 };
 
+// <div class='hourly-weather-list'>
+//   <div class='hourly-weather-card'>
+//     <p>12:00</p>
+//     <hr />
+//     <img class='hourly-weather-icon' />
+//     <p>25 C</p>
+//   </div>
+// </div>;
+
+const updateHourlyWeather = async location => {
+  const hourlyData = await getData(location);
+
+  // get the hourly forecast array from hourlyData
+  const hourlyForecast = hourlyData.forecast.forecastday[0].hour;
+
+  console.log(hourlyForecast);
+
+  const hourlyList = document.querySelector('.hourly-weather-list');
+  // clear list
+  hourlyList.innerHTML = '';
+
+  // hourlyForecast.forEach(hour => {
+  //   const hourDiv = document.createElement('div');
+  //   hourDiv.classList.add('hourly-forecast');
+
+  //   const time = document.createElement('p');
+  //   time.textContent = hour.time;
+  //   hourDiv.appendChild(time);
+
+  //   const icon = document.createElement('img');
+  //   icon.src = hour.condition.icon;
+  //   hourDiv.appendChild(icon);
+
+  //   const temp = document.createElement('p');
+  //   temp.textContent = `${hour.temp_c}°`;
+  //   hourDiv.appendChild(temp);
+
+  //   hourlyList.appendChild(hourDiv);
+  // });
+};
+
 // function that updates the UI with the weather data
 const updateUI = async location => {
   const weatherData = await processData(location);
@@ -149,3 +190,4 @@ updateUI(defaultLocation);
 setInterval(updateDateTime, 1000);
 
 updateForecast(defaultLocation, 7);
+updateHourlyWeather(defaultLocation);
