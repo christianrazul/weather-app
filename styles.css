@@ -123,3 +123,31 @@ body {
     }
   }
 }
+
+#temp_C {
+  font-size: 5rem;
+}
+
+.weather-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+#weather-description {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

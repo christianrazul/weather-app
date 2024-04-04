@@ -16,13 +16,24 @@
           <input class="form-field" type="text" placeholder="Enter a location" />
           <span>Enter</span>
         </div>
-        <div class="weather-information">
-          <h3 id="location"></h3>
-          <h1 id="temp_C"></h1>
+        <div class="weather">
+          <div class="weather-information">
+            <h3 id="location"></h3>
+            <h1 id="temp_C"></h1>
+          </div>
+          <div>
+            <div id="weather-description"></div>
+            <p id="wind-information"></p>
+          </div>
         </div>
-        <p id="weatherInfo"></p>
       </div>
-      <div class="right"></div>
+
+      <div class="right">
+        <div class="top">
+          <p id="datetime"></p>
+        </div>
+        <div class="bottom">Weather Status</div>
+      </div>
     </div>
   </body>
   <script src="app.js" defer></script>
