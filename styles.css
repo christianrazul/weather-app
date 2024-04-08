@@ -206,6 +206,13 @@ footer i {
   justify-content: space-between;
 }
 
+.forecast-day.current-day {
+  border: 1px solid var(--group-border);
+  background-color: var(--group-background);
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+}
+
 .forecast-info-container {
   display: flex;
   align-items: center;

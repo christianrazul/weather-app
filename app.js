@@ -92,11 +92,13 @@ const updateForecast = async (location, days) => {
   forecastList.innerHTML = '';
   forecastDays.forEach(day => {
     const date = new Date(day.date);
+    const now = new Date();
 
     // main div that will contain the forecast data
     const forecastDay = document.createElement('div');
     forecastDay.classList.add('forecast-day');
 
+    // div that contains the image and info
     const div = document.createElement('div');
     div.classList.add('forecast-info-container');
 
@@ -124,6 +126,12 @@ const updateForecast = async (location, days) => {
     const temp = document.createElement('h2');
     temp.textContent = `${Math.ceil(day.day.avgtemp_c)}°`;
     forecastDay.appendChild(temp);
+
+    if (
+      now.toLocaleDateString('en-US', { weekday: 'short' }) === date.toLocaleDateString('en-US', { weekday: 'short' })
+    ) {
+      forecastDay.classList.add('current-day');
+    }
 
     forecastList.appendChild(forecastDay);
   });
