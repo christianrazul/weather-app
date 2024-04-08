@@ -97,14 +97,19 @@ const updateForecast = async (location, days) => {
     const forecastDay = document.createElement('div');
     forecastDay.classList.add('forecast-day');
 
+    const div = document.createElement('div');
+    div.classList.add('forecast-info-container');
+
     const icon = document.createElement('img');
     icon.classList.add('forecast-icon');
     icon.src = day.day.condition.icon;
-    forecastDay.appendChild(icon);
+    div.appendChild(icon);
 
     const info = document.createElement('div');
     info.classList.add('forecast-info');
-    forecastDay.appendChild(info);
+    div.appendChild(info);
+
+    forecastDay.appendChild(div);
 
     const dayName = document.createElement('p');
     dayName.textContent = `${date.toLocaleDateString('en-US', {
